@@ -10,6 +10,7 @@ class AppTheme {
   static const Color dark = Color.fromARGB(255, 52, 59, 64);
 
   static Color transparentDark = const Color.fromARGB(124, 52, 59, 64);
+  static Color ultraSoftDark = const Color.fromARGB(64, 52, 59, 64);
 
   static ThemeData lightTheme = ThemeData.light().copyWith(
       primaryColor: primary,

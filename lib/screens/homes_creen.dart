@@ -9,13 +9,15 @@ class HomeScreen extends StatelessWidget {
 
   static List<String> arrays = [
     'grayblue',
-    'smashred',
+    'bluesandroses',
+    'mooooooooo',
+    'blaze',
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: ExpandableFab.location,
-      floatingActionButton: AddFAButton(),
+      floatingActionButton: const AddFAButton(),
       body: ListView.builder(
         itemCount: arrays.length,
         itemBuilder: (context, item) {

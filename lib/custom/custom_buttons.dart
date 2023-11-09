@@ -90,14 +90,40 @@ class AddFAButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ExpandableFab(
       openButtonBuilder: RotateFloatingActionButtonBuilder(
-          child: const Icon(Icons.add),
-          fabSize: ExpandableFabSize.regular,
-          backgroundColor: AppTheme.primary),
+        child: const Icon(Icons.add),
+        fabSize: ExpandableFabSize.regular,
+        backgroundColor: AppTheme.primary,
+      ),
       overlayStyle: ExpandableFabOverlayStyle(blur: 5),
-      children: [
-        FloatingActionButton.small(onPressed: () {}),
-        FloatingActionButton.small(onPressed: () {}),
+      children: const [
+        FABOption(
+          icon: Icons.medical_services_rounded,
+          route: '/AddMed',
+        ),
+        FABOption(
+          icon: Icons.medication_liquid_rounded,
+          route: '/AddGroup',
+        ),
       ],
+    );
+  }
+}
+
+class FABOption extends StatelessWidget {
+  final IconData icon;
+  final String route;
+  const FABOption({super.key, required this.icon, required this.route});
+
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      heroTag: 'fab_${icon.toString()}',
+      onPressed: <Future>() {
+        return Navigator.pushNamed(context, route);
+      },
+      backgroundColor: Colors.white,
+      foregroundColor: AppTheme.primary,
+      child: Icon(icon),
     );
   }
 }

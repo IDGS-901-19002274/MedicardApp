@@ -40,12 +40,10 @@ class GroupCard extends StatelessWidget {
             constraints: const BoxConstraints(minHeight: 110),
             decoration: BoxDecoration(color: colorPallette.cardColor),
             child: Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  MedicineRecorder(colorPallette: colorPallette),
-                  MedicineRecorder(colorPallette: colorPallette),
                   MedicineRecorder(colorPallette: colorPallette),
                   AddGroupMedButton(
                     bgColor: colorPallette.detailColor1,

@@ -36,7 +36,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_expandable_fab: ^2.0.0
-
+  searchfield: ^0.8.7
+  calendar_date_picker2: ^0.5.3
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

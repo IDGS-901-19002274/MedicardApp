@@ -6,6 +6,8 @@ class AppRoutes {
     '/Login': (BuildContext context) => const LoginScreen(),
     '/Register': (BuildContext context) => const RegisterScreen(),
     '/Home': (BuildContext context) => const HomeScreen(),
+    '/AddMed': (BuildContext context) => const AddMedScreen(),
+    '/AddGroup': (BuildContext context) => const AddGropuScreen(),
   };
 
   static const String initialRoute = '/Login';
