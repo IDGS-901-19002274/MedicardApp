@@ -13,7 +13,7 @@ class TextButtonSuccess extends StatelessWidget {
     super.key,
     required this.text,
     required this.function,
-    this.bgColor = AppTheme.fourth,
+    this.bgColor = AppTheme.primary,
     this.icon,
   });
 
@@ -67,7 +67,9 @@ class AddGroupMedButton extends StatelessWidget {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20))),
                   backgroundColor: MaterialStateProperty.all<Color>(bgColor)),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/DragToGroup');
+              },
               child: const Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Icon(

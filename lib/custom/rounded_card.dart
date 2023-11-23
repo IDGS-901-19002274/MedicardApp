@@ -4,6 +4,7 @@ class RoundedBox extends StatelessWidget {
   final Widget child;
   final Color bgColor;
   final double maxHeight;
+  final double minWidth;
   final EdgeInsets padding;
   final double shadow;
   final Color shadowColor;
@@ -13,6 +14,7 @@ class RoundedBox extends StatelessWidget {
     required this.child,
     this.bgColor = Colors.white,
     this.maxHeight = double.infinity,
+    this.minWidth = 0,
     this.padding = const EdgeInsets.all(30),
     this.shadow = 0.0,
     this.shadowColor = Colors.black,
@@ -32,7 +34,7 @@ class RoundedBox extends StatelessWidget {
               ],
             )
           : null,
-      constraints: BoxConstraints(maxHeight: maxHeight),
+      constraints: BoxConstraints(maxHeight: maxHeight, minWidth: minWidth),
       child: Card(
         color: bgColor,
         shape: RoundedRectangleBorder(

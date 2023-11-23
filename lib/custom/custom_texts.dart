@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 class TitleText extends StatelessWidget {
   final String text;
   final double fontSize;
-  const TitleText({super.key, required this.text, this.fontSize = 45});
+  final Color fontColor;
+  const TitleText(
+      {super.key,
+      required this.text,
+      this.fontSize = 45,
+      this.fontColor = Colors.black});
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
+      style: TextStyle(
+          fontSize: fontSize, fontWeight: FontWeight.bold, color: fontColor),
       textAlign: TextAlign.center,
     );
   }
@@ -120,6 +126,26 @@ class MedicineText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(color: color, fontSize: 15),
+    );
+  }
+}
+
+class DragCardText extends StatelessWidget {
+  final String text;
+  final Color textColor;
+  const DragCardText({super.key, required this.text, required this.textColor});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        text,
+        style: TextStyle(
+          color: textColor,
+          fontWeight: FontWeight.bold,
+          fontSize: 15,
+        ),
+      ),
     );
   }
 }

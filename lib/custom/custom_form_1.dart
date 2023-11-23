@@ -45,7 +45,7 @@ class CustomFormSession extends StatelessWidget {
     final TextButtonSuccess logWithGoogleButton = TextButtonSuccess(
       function: () {},
       text: logWithGoogle,
-      bgColor: AppTheme.primary,
+      bgColor: AppTheme.tertiary,
       icon: Icons.login,
     );
 

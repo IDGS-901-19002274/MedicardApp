@@ -8,6 +8,7 @@ class AppRoutes {
     '/Home': (BuildContext context) => const HomeScreen(),
     '/AddMed': (BuildContext context) => const AddMedScreen(),
     '/AddGroup': (BuildContext context) => const AddGropuScreen(),
+    '/DragToGroup': (BuildContext context) => const DragToGroupScreen(),
   };
 
   static const String initialRoute = '/Login';

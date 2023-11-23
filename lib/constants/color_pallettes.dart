@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:medicard_app/interfaces/color_interface.dart';
 
 final Map<String, CardColors> colorPalletes = <String, CardColors>{
+  'default': CardColors(
+    bgColor: Colors.white,
+    cardColor: Colors.white70,
+    detailColor1: Colors.white60,
+    detailColor2: Colors.black45,
+    textColor: Colors.black,
+  ),
   'grayblue': CardColors(
     bgColor: const Color.fromARGB(255, 203, 218, 213),
     cardColor: const Color.fromARGB(255, 137, 167, 177),
