@@ -8,13 +8,15 @@ class AddForm extends StatelessWidget {
   final FocusNode focus;
   final String title;
   final double maxHeight;
+  final VoidCallback function;
 
   const AddForm(
       {super.key,
       required this.focus,
       required this.title,
       required this.fields,
-      this.maxHeight = double.infinity});
+      this.maxHeight = double.infinity,
+      required this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +24,8 @@ class AddForm extends StatelessWidget {
       padding: const EdgeInsets.only(top: 45, bottom: 25),
       child: Center(
         child: RoundedBox(
+          bgColor: AppTheme.transparentLight,
           maxHeight: maxHeight,
-          shadow: 40,
-          shadowColor: AppTheme.ultraSoftDark,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -51,7 +52,7 @@ class AddForm extends StatelessWidget {
 
     Row bottom = Row(
       children: [
-        Expanded(child: TextButtonSuccess(text: 'Guardar', function: () {}))
+        Expanded(child: TextButtonSuccess(text: 'Guardar', function: function))
       ],
     );
 

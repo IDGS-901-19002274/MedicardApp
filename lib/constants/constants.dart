@@ -26,3 +26,9 @@ BorderRadius inputBorderRadius = BorderRadius.circular(10);
 //Buttons Constans
 const EdgeInsets buttonPadding = EdgeInsets.all(15);
 BorderRadius buttonBorderRadius = BorderRadius.circular(10);
+
+BoxDecoration backgroundImage({required String image}) {
+  return BoxDecoration(
+      image: DecorationImage(
+          fit: BoxFit.cover, image: AssetImage('assets/img/$image.jpeg')));
+}

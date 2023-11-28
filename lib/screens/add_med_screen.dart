@@ -28,6 +28,7 @@ class _AddMedScreenState extends State<AddMedScreen> {
             DropdownMenuEntry(value: '$index', label: 'Rigtone #$index'));
     return Scaffold(
       body: AddForm(
+        function: () {},
         fields: [
           SearchWidget(
             keyWord: 'medKey',
@@ -81,7 +82,7 @@ class _AddMedScreenState extends State<AddMedScreen> {
           MedDropDown(items: rigtones, label: 'Tono de Alarma')
         ],
         focus: focus,
-        title: 'Medicamento',
+        title: 'Tratamiento',
       ),
     );
   }

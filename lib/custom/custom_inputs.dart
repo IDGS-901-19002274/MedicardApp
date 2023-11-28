@@ -6,17 +6,24 @@ class BasicTextField extends StatelessWidget {
   final bool shadow;
   final String hint;
   final TextInputType inputType;
+  final Function(String)? onchange;
 
   const BasicTextField({
     super.key,
     this.shadow = false,
     required this.hint,
     required this.inputType,
+    this.onchange,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: (value) {
+        if (onchange != null) {
+          onchange!(value);
+        }
+      },
       keyboardType: inputType,
       obscureText: shadow,
       style: inputTextStyle,
@@ -39,11 +46,13 @@ class BasicTextField extends StatelessWidget {
 class MedDropDown extends StatelessWidget {
   final String label;
   final List<DropdownMenuEntry<dynamic>> items;
+  final Function(dynamic)? onchange;
 
   const MedDropDown({
     super.key,
     required this.items,
     required this.label,
+    this.onchange,
   });
 
   @override
@@ -54,6 +63,7 @@ class MedDropDown extends StatelessWidget {
         Text(label),
         DropdownMenu(
           dropdownMenuEntries: items,
+          onSelected: onchange,
         ),
       ],
     );
@@ -77,11 +87,13 @@ class RowedForm extends StatelessWidget {
   final String label;
   final String hint;
   final TextInputType inputType;
+  final Function(String)? onchange;
   const RowedForm({
     super.key,
     required this.label,
     required this.hint,
     required this.inputType,
+    this.onchange,
   });
 
   @override
@@ -89,7 +101,12 @@ class RowedForm extends StatelessWidget {
     return Row(
       children: [
         Text(label),
-        Flexible(child: BasicTextField(hint: hint, inputType: inputType))
+        Flexible(
+            child: BasicTextField(
+          hint: hint,
+          inputType: inputType,
+          onchange: onchange,
+        ))
       ],
     );
   }

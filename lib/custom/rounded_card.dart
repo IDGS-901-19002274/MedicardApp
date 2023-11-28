@@ -8,6 +8,7 @@ class RoundedBox extends StatelessWidget {
   final EdgeInsets padding;
   final double shadow;
   final Color shadowColor;
+  final bool isBlured;
 
   const RoundedBox({
     super.key,
@@ -18,12 +19,13 @@ class RoundedBox extends StatelessWidget {
     this.padding = const EdgeInsets.all(30),
     this.shadow = 0.0,
     this.shadowColor = Colors.black,
+    this.isBlured = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: shadow != 0
+      decoration: shadow != 0.0
           ? BoxDecoration(
               boxShadow: [
                 BoxShadow(
@@ -36,6 +38,7 @@ class RoundedBox extends StatelessWidget {
           : null,
       constraints: BoxConstraints(maxHeight: maxHeight, minWidth: minWidth),
       child: Card(
+        elevation: 0,
         color: bgColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),

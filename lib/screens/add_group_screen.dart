@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medicard_app/constants/color_pallettes.dart';
+import 'package:medicard_app/constants/constants.dart';
 import 'package:medicard_app/custom/custom_inputs.dart';
 import '../custom/custom_form_2.dart';
 
@@ -11,6 +12,8 @@ class AddGropuScreen extends StatefulWidget {
 }
 
 class _AddGropuScreenState extends State<AddGropuScreen> {
+  String nombre = '';
+  String tema = '';
   @override
   Widget build(BuildContext context) {
     List<DropdownMenuEntry<String>> colorLists = [];
@@ -22,7 +25,7 @@ class _AddGropuScreenState extends State<AddGropuScreen> {
             label: key,
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStateProperty.all<Color>(value.detailColor1),
+                  MaterialStateProperty.all<Color>(value.detailColor2),
               foregroundColor: MaterialStateProperty.all<Color>(value.bgColor),
             ),
           ),
@@ -30,18 +33,35 @@ class _AddGropuScreenState extends State<AddGropuScreen> {
       },
     );
     return Scaffold(
-      body: AddForm(
-        maxHeight: 400,
-        fields: [
-          const RowedForm(
-            label: 'Nombre',
-            hint: 'Nombre del grupo',
-            inputType: TextInputType.name,
-          ),
-          MedDropDown(items: colorLists, label: 'Paleta de Colores')
-        ],
-        focus: FocusNode(),
-        title: 'Grupo',
+      body: Container(
+        decoration: backgroundImage(image: 'background2'),
+        child: AddForm(
+          maxHeight: 400,
+          function: () {
+            //dynamic newGroup =
+            //  Database.setGroup(id: 1, nombre: nombre, tema: tema);
+            //print(newGroup);
+          },
+          fields: [
+            RowedForm(
+              label: 'Nombre',
+              hint: 'Nombre del grupo',
+              inputType: TextInputType.name,
+              onchange: (String value) {
+                nombre = value;
+              },
+            ),
+            MedDropDown(
+              items: colorLists,
+              label: 'Paleta de Colores',
+              onchange: (value) {
+                tema = value;
+              },
+            )
+          ],
+          focus: FocusNode(),
+          title: 'Grupo',
+        ),
       ),
     );
   }
