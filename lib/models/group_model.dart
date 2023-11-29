@@ -1,11 +1,11 @@
 // ignore_for_file: non_constant_identifier_names
 class GroupModel {
-  final int id_grupo;
+  final int? id_grupo;
   final String nombre;
   final String tema;
 
   GroupModel({
-    required this.id_grupo,
+    this.id_grupo,
     required this.nombre,
     required this.tema,
   });

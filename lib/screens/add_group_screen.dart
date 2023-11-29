@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:medicard_app/constants/color_pallettes.dart';
 import 'package:medicard_app/constants/constants.dart';
 import 'package:medicard_app/custom/custom_inputs.dart';
+import 'package:medicard_app/models/group_model.dart';
+import 'package:medicard_app/providers/grupo_provider.dart';
+import 'package:provider/provider.dart';
 import '../custom/custom_form_2.dart';
+import '../dao/grupo_dao.dart';
 
 class AddGropuScreen extends StatefulWidget {
   const AddGropuScreen({super.key});
@@ -38,9 +42,13 @@ class _AddGropuScreenState extends State<AddGropuScreen> {
         child: AddForm(
           maxHeight: 400,
           function: () {
-            //dynamic newGroup =
-            //  Database.setGroup(id: 1, nombre: nombre, tema: tema);
-            //print(newGroup);
+            GrupoDao dao = GrupoDao();
+            final provider = Provider.of<GrupoProvider>(context, listen: false);
+            provider.clearData();
+            GroupModel nuevoGrupo = GroupModel(nombre: nombre, tema: tema);
+            dao.insertGroup(group: nuevoGrupo);
+            provider.setListaGrupos();
+            Navigator.pop(context);
           },
           fields: [
             RowedForm(
@@ -52,6 +60,7 @@ class _AddGropuScreenState extends State<AddGropuScreen> {
               },
             ),
             MedDropDown(
+              initial: 'default',
               items: colorLists,
               label: 'Paleta de Colores',
               onchange: (value) {

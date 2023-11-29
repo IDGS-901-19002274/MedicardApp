@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medicard_app/custom/custom_buttons.dart';
 import 'package:medicard_app/custom/custom_widgets.dart';
 import 'package:medicard_app/theme/app_theme.dart';
 

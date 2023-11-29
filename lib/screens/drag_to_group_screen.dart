@@ -16,8 +16,8 @@ class _DragToGroupScreenState extends State<DragToGroupScreen> {
       appBar: AppBar(
         title: const Text('Editar grupo'),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.delete)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.save)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.delete)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.save)),
         ],
       ),
       body: SingleChildScrollView(

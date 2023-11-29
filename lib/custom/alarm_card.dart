@@ -20,26 +20,16 @@ class AlarmCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                MiddleCardTitle(text: medicine, color: colors.bgColor),
-                MedicineText(
-                  text: '$willSound $frecuency $txtHours',
-                  color: colors.cardColor,
-                ),
-              ],
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.chevron_right_outlined),
-              color: colors.bgColor,
-            )
-          ],
+      child: ListTile(
+        title: MiddleCardTitle(text: medicine, color: colors.bgColor),
+        subtitle: MedicineText(
+          text: '$willSound $frecuency $txtHours',
+          color: colors.cardColor,
+        ),
+        trailing: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.chevron_right_outlined),
+          color: colors.bgColor,
         ),
       ),
     );

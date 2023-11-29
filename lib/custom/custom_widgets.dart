@@ -7,3 +7,5 @@ export 'package:medicard_app/custom/custom_inputs.dart';
 export 'package:medicard_app/custom/custom_texts.dart';
 export 'package:medicard_app/custom/custom_icons.dart';
 export 'package:medicard_app/constants/constants.dart';
+export 'package:medicard_app/custom/custom_buttons.dart';
+export 'package:medicard_app/custom/custom_widgets.dart';

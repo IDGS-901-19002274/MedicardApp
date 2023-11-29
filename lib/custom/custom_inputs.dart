@@ -47,12 +47,14 @@ class MedDropDown extends StatelessWidget {
   final String label;
   final List<DropdownMenuEntry<dynamic>> items;
   final Function(dynamic)? onchange;
+  final String initial;
 
   const MedDropDown({
     super.key,
     required this.items,
     required this.label,
     this.onchange,
+    required this.initial,
   });
 
   @override
@@ -64,6 +66,7 @@ class MedDropDown extends StatelessWidget {
         DropdownMenu(
           dropdownMenuEntries: items,
           onSelected: onchange,
+          initialSelection: initial,
         ),
       ],
     );
