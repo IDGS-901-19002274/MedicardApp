@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:medicard_app/custom/custom_widgets.dart';
 import 'package:medicard_app/interfaces/color_interface.dart';
+import 'package:medicard_app/interfaces/tratamiento_y_medicamento.dart';
 
 class DraggableBox extends StatelessWidget {
-  final String name;
+  final TratamientoYMedicamento tym;
   final CardColors colorPallette;
   const DraggableBox(
-      {super.key, required this.name, required this.colorPallette});
+      {super.key, required this.tym, required this.colorPallette});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class DraggableBox extends StatelessWidget {
       bgColor: colorPallette.detailColor2,
       child: DragContainer(
         child: DragCardText(
-          text: name,
+          text: tym.nombreMedicamento,
           textColor: colorPallette.bgColor,
         ),
       ),

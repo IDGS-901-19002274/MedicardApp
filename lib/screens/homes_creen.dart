@@ -38,23 +38,50 @@ class _HomeScreenState extends State<HomeScreen> {
     grupos = gruprovider.listaGrupos.reversed.toList();
     medicamentos = medProvider.listaMedicamentos;
     tratamientos = traProvider.listaTratamientos;
+
     return Scaffold(
       floatingActionButtonLocation: ExpandableFab.location,
       floatingActionButton: const AddFAButton(),
-      body: grupos.length == 1 || medicamentos.isEmpty || tratamientos.isEmpty
-          ? const Center(
-              child: Text('No hay Elementos'),
-            )
-          : ListView.builder(
-              itemCount: grupos.length,
-              itemBuilder: (context, item) {
-                GroupModel grupo = grupos[item];
-                return GroupCard(
-                  grupo: grupo,
-                  colorPallette: colorPalletes[grupo.tema]!,
-                );
-              },
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Container(
+              decoration: backgroundImage(image: 'background4'),
             ),
+            CustomScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(
+                  child: Center(
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Image.asset('assets/img/logo_banner.png'),
+                    ),
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      if (medicamentos.isEmpty || tratamientos.isEmpty) {
+                        return const Center(
+                          child: Text('No hay elementos'),
+                        );
+                      } else {
+                        GroupModel grupo = grupos[index];
+                        return GroupCard(
+                          grupo: grupo,
+                          colorPallette: colorPalletes[grupo.tema]!,
+                        );
+                      }
+                    },
+                    childCount: grupos.length,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

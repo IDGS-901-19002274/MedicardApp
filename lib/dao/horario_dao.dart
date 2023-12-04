@@ -5,16 +5,21 @@ class HorarioDao {
   final database = DatabaseHelper.instance.db;
   final String table = 'tbl_horarios';
 
-  Future<List<HorarioModel>> readHorarios(
-      {required int fkIdMedicamento}) async {
+  Future<List<HorarioModel>> readHorarios() async {
+    final data = await database.query(table);
+    return data.map((e) => HorarioModel.fromMap(e)).toList();
+  }
+
+  Future<List<HorarioModel>> readHorariosById(
+      {required int fkIdtratamiento}) async {
     final data = await database.query(table,
-        where: 'fk_id_medicamento = ?', whereArgs: [fkIdMedicamento]);
+        where: 'fk_id_tratamiento = ?', whereArgs: [fkIdtratamiento]);
     return data.map((e) => HorarioModel.fromMap(e)).toList();
   }
 
   Future<int> insertHorario({required HorarioModel horario}) async {
     return await database.insert(table, {
-      "fk_id_medicamento": horario.fk_id_medicamento,
+      "fk_id_tratamiento": horario.fk_id_tratamiento,
       "medicina_tomada": horario.medicina_tomada,
       "fecha": horario.fecha.toIso8601String(),
     });
@@ -24,7 +29,7 @@ class HorarioDao {
     await database.update(
       table,
       {
-        "fk_id_medicamento": horario.fk_id_medicamento,
+        "fk_id_tratamiento": horario.fk_id_tratamiento,
         "medicina_tomada": horario.medicina_tomada,
         "fecha": horario.fecha.toIso8601String(),
       },

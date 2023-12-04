@@ -57,15 +57,18 @@ class _AddMedScreenState extends State<AddMedScreen> {
             value: 'Rigtone #$index', label: 'Rigtone #$index'));
 
     const String firstgroupid = '1';
-    return Container(
-      decoration: backgroundImage(image: 'background2'),
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: AddForm(
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: Container(
+        decoration: backgroundImage(image: 'background2'),
+        child: AddForm(
           function: () {
             TratamientoDao dao = TratamientoDao();
             final provider = Provider.of<GrupoProvider>(context, listen: false);
+            final tratProvider =
+                Provider.of<TratamientoProvider>(context, listen: false);
             provider.clearData();
+            tratProvider.clearData();
             TratamientoModel newTratamiento = TratamientoModel(
                 id_tratamiento: 0,
                 fk_id_medicamento: int.parse(tratId),
@@ -79,6 +82,7 @@ class _AddMedScreenState extends State<AddMedScreen> {
                 fk_id_grupo: tratGrupoId,
                 rigtone: tratRigtone);
             dao.insertTratamiento(tratamiento: newTratamiento);
+            tratProvider.setListaTratamientos();
             provider.setListaGrupos();
             Navigator.pop(context);
           },

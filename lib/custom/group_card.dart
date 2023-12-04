@@ -7,20 +7,26 @@ import 'package:medicard_app/providers/provider_exports.dart';
 import 'package:provider/provider.dart';
 import 'custom_widgets.dart';
 
-class GroupCard extends StatelessWidget {
+class GroupCard extends StatefulWidget {
   final CardColors colorPallette;
   final GroupModel grupo;
   const GroupCard(
       {super.key, required this.colorPallette, required this.grupo});
 
   @override
+  State<GroupCard> createState() => _GroupCardState();
+}
+
+class _GroupCardState extends State<GroupCard> {
+  bool isOpen = true;
+  @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 20, bottom: 20),
       child: RoundedBox(
-        shadow: 50,
-        shadowColor: colorPallette.cardColor,
-        bgColor: colorPallette.bgColor,
+        elevation: 3,
+        shadowColor: widget.colorPallette.cardColor,
+        bgColor: widget.colorPallette.bgColor,
         padding: const EdgeInsets.only(bottom: 30, left: 5, right: 5),
         child: ListTile(
           contentPadding: const EdgeInsets.all(0),
@@ -30,31 +36,48 @@ class GroupCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CardTitle(
-                  text: grupo.nombre.length > 20
-                      ? '${grupo.nombre.substring(0, 20)}...'
-                      : grupo.nombre,
-                  fontColor: colorPallette.textColor,
+                  text: widget.grupo.nombre.length > 20
+                      ? '${widget.grupo.nombre.substring(0, 20)}...'
+                      : widget.grupo.nombre,
+                  fontColor: widget.colorPallette.textColor,
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      isOpen = !isOpen;
+                    });
+                  },
                   icon: const Icon(Icons.keyboard_arrow_down_outlined),
                   iconSize: 30,
-                  color: colorPallette.detailColor2,
+                  color: widget.colorPallette.detailColor2,
                 )
               ],
             ),
           ),
-          subtitle: Container(
-            constraints: const BoxConstraints(minHeight: 110),
-            decoration: BoxDecoration(color: colorPallette.cardColor),
+          subtitle: AnimatedContainer(
+            duration: const Duration(seconds: 0),
+            height: isOpen ? null : 0,
+            decoration: BoxDecoration(color: widget.colorPallette.cardColor),
             child: Padding(
               padding: const EdgeInsets.all(10.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: createRecorders(
-                    id: grupo.id_grupo!,
-                    colorpallette: colorPallette,
-                    context: context),
+                            id: widget.grupo.id_grupo!,
+                            nombre: widget.grupo.nombre,
+                            colorpallette: widget.colorPallette,
+                            context: context)
+                        .isEmpty
+                    ? [
+                        const Center(
+                          child: Text('Nada para mostrar'),
+                        )
+                      ]
+                    : createRecorders(
+                        id: widget.grupo.id_grupo!,
+                        nombre: widget.grupo.nombre,
+                        colorpallette: widget.colorPallette,
+                        context: context),
               ),
             ),
           ),
@@ -65,6 +88,7 @@ class GroupCard extends StatelessWidget {
 
   List<Widget> createRecorders(
       {required int id,
+      required String nombre,
       required CardColors colorpallette,
       required BuildContext context}) {
     TratamientoProvider provider = Provider.of<TratamientoProvider>(context);
@@ -79,16 +103,20 @@ class GroupCard extends StatelessWidget {
         MedicamentoModel medicamento = medicamentos.firstWhere((medicamento) =>
             medicamento.idMedicamento == tratamiento.fk_id_medicamento);
         rtrn.add(MedicineRecorder(
-          colorPallette: colorPallette,
+          colorPallette: widget.colorPallette,
           tratamiento: tratamiento,
           medicamento: medicamento,
         ));
       }
     }
 
-    rtrn.add(AddGroupMedButton(
-      bgColor: colorPallette.detailColor1,
-    ));
+    if (id != 1) {
+      rtrn.add(AddGroupMedButton(
+        idGrupo: id,
+        nombre: nombre,
+        collorPallette: widget.colorPallette,
+      ));
+    }
 
     return rtrn;
   }

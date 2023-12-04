@@ -44,6 +44,8 @@ dependencies:
   introduction_screen: ^3.1.12
   provider: ^6.0.5
   search_choices: ^2.2.7
+  http: ^1.0.0
+  intl: ^0.17.0
   
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,9 @@ flutter:
     - assets/img/background1.jpeg
     - assets/img/background2.jpeg
     - assets/img/background3.jpeg
+    - assets/img/background4.jpeg
+    - assets/img/logo_banner.png
+    - assets/img/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

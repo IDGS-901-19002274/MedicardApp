@@ -28,6 +28,7 @@ class MedicineRecorder extends StatelessWidget {
               colors: colorPallette,
               medicine: medicamento.nombre,
               frecuency: tratamiento.periodo_en_horas,
+              idTratamiento: tratamiento.id_tratamiento,
             ),
           )
         ],

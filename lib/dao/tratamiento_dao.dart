@@ -11,7 +11,7 @@ class TratamientoDao {
   }
 
   Future<int> insertTratamiento({required TratamientoModel tratamiento}) async {
-    return await database.insert(table, {
+    final int tratId = await database.insert(table, {
       "fk_id_medicamento": tratamiento.fk_id_medicamento,
       "precio": tratamiento.precio,
       "dosis": tratamiento.dosis,
@@ -21,23 +21,32 @@ class TratamientoDao {
       "fk_id_grupo": tratamiento.fk_id_grupo,
       "rigtone": tratamiento.rigtone,
     });
+
+    // Insertar todos los horarios
+    DateTime fechaActual = tratamiento.fecha_inicio;
+    while (fechaActual.isBefore(tratamiento.fecha_final)) {
+      await database.insert('tbl_horarios', {
+        "fk_id_tratamiento": tratId,
+        "medicina_tomada": 2,
+        "fecha": fechaActual.toIso8601String(),
+      });
+
+      // Incrementar la fecha según el periodo_en_horas
+      fechaActual =
+          fechaActual.add(Duration(hours: tratamiento.periodo_en_horas));
+    }
+
+    return tratId;
   }
 
-  Future update({required TratamientoModel tratamiento}) async {
+  Future update({required int grupoId, required int idTratamiento}) async {
     await database.update(
       table,
       {
-        "fk_id_medicamento": tratamiento.fk_id_medicamento,
-        "precio": tratamiento.precio,
-        "dosis": tratamiento.dosis,
-        "periodo_en_horas": tratamiento.periodo_en_horas,
-        "fecha_inicio": tratamiento.fecha_inicio.toIso8601String(),
-        "fecha_final": tratamiento.fecha_final.toIso8601String(),
-        "fk_id_grupo": tratamiento.fk_id_grupo,
-        "rigtone": tratamiento.rigtone,
+        "fk_id_grupo": grupoId,
       },
       where: 'id_tratamiento = ?',
-      whereArgs: [tratamiento.id_tratamiento],
+      whereArgs: [idTratamiento],
     );
   }
 

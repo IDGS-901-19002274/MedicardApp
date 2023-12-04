@@ -11,7 +11,6 @@ class GroupModel {
   });
 
   GroupModel copyWith({int? id, String? nombre, String? tema}) {
-    // ignore: unnecessary_this
     return GroupModel(
         id_grupo: id ?? id_grupo,
         nombre: nombre ?? this.nombre,
