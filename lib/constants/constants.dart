@@ -10,7 +10,7 @@ const String logWithGoogle = '  Iniciar sesión con Google';
 const String insertEmail = 'Inserte su E-mail';
 const String insertPass = 'Inserte su contraseña';
 const String confirmpass = 'Confirme contraseña';
-const String insname = 'Inserte su nombre completo';
+const String insname = 'Inserte su nombre(s)';
 const String willSound = 'La alarma sonará cada';
 const String txtHours = 'horas.';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'dart:convert';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class UtilProvider extends ChangeNotifier {
@@ -12,5 +12,16 @@ class UtilProvider extends ChangeNotifier {
       'Accept': 'application/json',
     });
     return response;
+  }
+
+  Future<http.Response> postHTTP(
+      {required String url, required Map<String, dynamic> body}) async {
+    var bodyjson = jsonEncode(body);
+    return await http.post(Uri.parse(url),
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: bodyjson);
   }
 }

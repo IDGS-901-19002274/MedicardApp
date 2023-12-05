@@ -25,6 +25,15 @@ class HorarioDao {
     });
   }
 
+  Future<int> insertHorarioWithId({required HorarioModel horario}) async {
+    return await database.insert(table, {
+      "id_horario": horario.id_horario,
+      "fk_id_tratamiento": horario.fk_id_tratamiento,
+      "medicina_tomada": horario.medicina_tomada,
+      "fecha": horario.fecha.toIso8601String(),
+    });
+  }
+
   Future update({required HorarioModel horario}) async {
     await database.update(
       table,
@@ -36,5 +45,9 @@ class HorarioDao {
       where: 'id_horario = ?',
       whereArgs: [horario.id_horario],
     );
+  }
+
+  Future deleteAllHorarios() async {
+    await database.delete(table);
   }
 }

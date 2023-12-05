@@ -22,9 +22,6 @@ class DatabaseHelper {
           'CREATE TABLE IF NOT EXISTS tbl_horarios (id_horario INTEGER PRIMARY KEY NOT NULL,fk_id_tratamiento INTEGER NOT NULL,medicina_tomada INTEGER NOT NULL,fecha DATETIME NOT NULL,FOREIGN KEY (fk_id_tratamiento) REFERENCES tbl_tratamientos(id_tratamiento));');
       db.execute(
           'CREATE TABLE tbl_datos_usuario (id_usuario INTEGER PRIMARY KEY NOT NULL,nombre VARCHAR(60),apellidoP VARCHAR(60),apellidoM VARCHAR(60),correo VARCHAR(60));');
-
-      await db.insert('tbl_grupos',
-          {'id_grupo': 1, 'nombre': 'Sin Grupo', 'tema': 'default'});
     });
   }
 }

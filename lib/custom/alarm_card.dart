@@ -37,7 +37,6 @@ class AlarmCard extends StatelessWidget {
           onPressed: () async {
             await Provider.of<HorarioProvider>(context, listen: false)
                 .clearData();
-            print('lista limpia');
             Navigator.push(
                 context,
                 MaterialPageRoute(

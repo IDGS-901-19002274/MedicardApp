@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:medicard_app/custom/custom_widgets.dart';
-import 'package:medicard_app/theme/app_theme.dart';
 
 class CustomFormSession extends StatelessWidget {
   final BuildContext context;
@@ -41,13 +40,6 @@ class CustomFormSession extends StatelessWidget {
       text: mainbuttontext,
     );
 
-    final TextButtonSuccess logWithGoogleButton = TextButtonSuccess(
-      function: () {},
-      text: logWithGoogle,
-      bgColor: AppTheme.tertiary,
-      icon: Icons.login,
-    );
-
     List botText = bottomtext.split('|');
 
     final Row bottomText = Row(
@@ -64,7 +56,6 @@ class CustomFormSession extends StatelessWidget {
     children = children + fields;
 
     children.add(successButton);
-    children.add(logWithGoogleButton);
     children.add(bottomText);
 
     return children;

@@ -16,4 +16,9 @@ class HorarioProvider extends ChangeNotifier {
     listaHorarios = await dao.readHorariosById(fkIdtratamiento: idTrat);
     notifyListeners();
   }
+
+  Future<List<HorarioModel>> setListaAllHorarios() async {
+    HorarioDao dao = HorarioDao();
+    return await dao.readHorarios();
+  }
 }

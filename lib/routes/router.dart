@@ -13,6 +13,7 @@ class AppRoutes {
   };
 
   static const String initialRoute = '/Login';
+  static const String alternativeRoute = '/Home';
 
   static onUknownRoute(settings) {
     return MaterialPageRoute(builder: (context) => const ErrorScreen());

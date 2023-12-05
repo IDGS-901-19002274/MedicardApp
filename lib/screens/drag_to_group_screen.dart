@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medicard_app/constants/color_pallettes.dart';
 import 'package:medicard_app/custom/drag_and_drop.dart';
+import 'package:medicard_app/dao/dao_exports.dart';
 import 'package:medicard_app/interfaces/color_interface.dart';
 import 'package:medicard_app/interfaces/tratamiento_y_medicamento.dart';
 import 'package:medicard_app/models/model_exports.dart';
@@ -44,7 +45,34 @@ class _DragToGroupScreenState extends State<DragToGroupScreen> {
                               colorPallette: widget.colorPallette,
                             )));
               },
-              icon: const Icon(Icons.delete)),
+              icon: const Icon(Icons.edit_rounded)),
+          IconButton(
+              onPressed: () async {
+                GrupoProvider gruProvider =
+                    Provider.of<GrupoProvider>(context, listen: false);
+                TratamientoProvider traProvider =
+                    Provider.of<TratamientoProvider>(context, listen: false);
+                TratamientoDao dao = TratamientoDao();
+                GrupoDao grudao = GrupoDao();
+                gruProvider.clearData();
+                traProvider.clearData();
+
+                List<TratamientoModel> listaTratamientos =
+                    await dao.readTratamientosById(id: widget.idGrupo);
+                for (final tratamiento in listaTratamientos) {
+                  int idTratamiento = tratamiento.id_tratamiento;
+                  await dao.update(grupoId: 1, idTratamiento: idTratamiento);
+                }
+                await grudao.delete(idGroup: widget.idGrupo);
+                await traProvider.setListaTratamientos();
+                await gruProvider.setListaGrupos();
+                // ignore: use_build_context_synchronously
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.delete_rounded,
+                color: widget.colorPallette.bgColor,
+              )),
         ],
       ),
       body: SingleChildScrollView(
